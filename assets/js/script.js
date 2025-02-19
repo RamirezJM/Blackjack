@@ -11,7 +11,7 @@ for(const palo of palos){         //se anidan 2 bucles para iterar sobre los pal
     }else if(i > 10){             //se crean los valores
       valor = 10
     }
-  const imagen = `../images/cards/${nombre}.png`      //se crea la ruta a la imagen
+  const imagen = `assets/images/cards/${nombre}.png`      //se crea la ruta a la imagen
   cartas.push({nombre: nombre, valor: valor, imagen: imagen}) //se crea un objeto con las propiedades creadas y se agrega al array cartas.
    
   }
@@ -19,23 +19,122 @@ for(const palo of palos){         //se anidan 2 bucles para iterar sobre los pal
 console.log(cartas)
 
 /***************************************************************************** */
-let firstCard = 10
+/* let firstCard = 10
 let secondCard = 2
 let sum = firstCard + secondCard
 let hasBlackJack = false
 let isAlive = true
 let message = ''
-
 const mensaje = document.querySelector('.mensaje')
-document.querySelector('.jugar').addEventListener('click', () => {
-  if(sum <= 20){
-    mensaje.innerText = 'Desea otra carta?'
-    
+const suma = document.querySelector('.suma')
+ */
+
+
+/*   if(sum <= 20){
+  suma.innerText = sum     
   }else if(sum === 21){
     message = 'has ganado!'
     hasBlackJack = true
   }else{
     message = 'has perdido'
     isAlive = false
+  } */
+
+
+    
+
+const comenzarJuego = () =>{
+  barajar(cartas)
+
+  const carta1Jugador = repartir()
+  const carta2Jugador = repartir()
+  const carta1Casa = repartir()
+  const carta2Casa = repartir()
+
+  /* jugador */
+
+  const espacioJugador = document.querySelector('.jugador')
+  espacioJugador.innerHTML = ''   //se limpia el espacio
+
+  const imagen1Jugador = document.createElement('img')
+  imagen1Jugador.src = carta1Jugador.imagen
+  imagen1Jugador.alt = carta1Jugador.nombre
+  espacioJugador.appendChild(imagen1Jugador)
+
+  const imagen2Jugador = document.createElement('img')
+  imagen2Jugador.src = carta2Jugador.imagen
+  imagen2Jugador.alt = carta2Jugador.nombre
+  espacioJugador.appendChild(imagen2Jugador)
+
+  /* casa */
+
+  const espacioCasa = document.querySelector('.casa')
+  espacioCasa.innerHTML = ''   //se limpia el espacio
+
+  const imagen1Casa = document.createElement('img')
+  imagen1Casa.src = carta1Casa.imagen
+  imagen1Casa.alt = carta1Casa.nombre
+  espacioCasa.appendChild(imagen1Casa)
+
+  const imagen2Casa = document.createElement('img')
+  imagen2Casa.src = carta2Casa.imagen
+  imagen2Jugador.alt = carta2Casa.nombre
+  espacioCasa.appendChild(imagen2Casa)
+
+  const cartasJugador = [carta1Jugador, carta2Jugador]
+  const cartasCasa = [carta1Casa, carta2Casa]
+
+  valorJugador = calculoValor(cartasJugador)
+  valorCasa = calculoValor(cartasCasa)
+  
+  totalJugador.innerText = valorJugador
+  totalCasa.innerText = valorCasa
+}
+
+const barajar = (cartas) =>{
+  for (let i = cartas.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));      //se usa el algoritmo de baraje de Fisher-Yates
+    [cartas[i], cartas[j]] = [cartas[j], cartas[i]];
   }
-})
+}
+
+const repartir = () => {              
+if(cartas.length === 0){                   //no quedan carta en el mazo   
+  return null
+}
+const indice = Math.floor(Math.random() * cartas.length)
+const carta = cartas[indice]        //elige una carta y la elimina del mazo
+cartas.splice(indice, 1)
+return carta
+}
+
+let valorCasa = 0
+let valorJugador = 0
+
+const totalCasa = document.querySelector('.total-casa')
+const totalJugador = document.querySelector('.total-jugador')
+
+const calculoValor = (mano) => {
+  let valor = 0
+  let ases = 0
+
+  for(const carta of mano){
+    valor += carta.valor
+    if(carta.valor === 11){
+      ases++
+    }
+  }
+  while(valor > 21 && ases > 0){
+    valor -= 10
+    ases--
+
+  }
+  return valor
+}
+
+
+document.querySelector('.jugar').addEventListener('click',comenzarJuego)
+
+
+
+

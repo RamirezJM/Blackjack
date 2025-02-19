@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blackjack</title>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
+
 <body>
   <h1>Blackjack21</h1>
-   <div class="container-juego">
+  <div class="container-juego">
     <div class="jugadores">
-    <div class="casa"></div>
-    <div class="jugador"></div>
-  </div>
-  <div class="extras">
-    <button class="jugar">Jugar</button>
-    <!-- <p class="mensaje"></p> -->
-  </div> 
+      <div class="casa"></div>
+      <div class="jugador"></div>
+    </div>
+    <div class="cuenta-cartas">
+      <div class="contador-casa">
+        <p>Casa</p>
+        <p class="total-casa"></p>
+      </div>
+      <div class="contador-jugador">
+        <p>Jugador</p>
+        <p class="total-jugador"></p>
+      </div>
+    </div>
+    <div class="extras">
+      <button class="jugar">Jugar</button>
+      <p class="mensaje"></p>
+      <p class="suma"></p>
+    </div>
   </div>
   <script src="assets/js/script.js"></script>
 </body>
+
 </html>
