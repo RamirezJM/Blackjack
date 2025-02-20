@@ -89,6 +89,23 @@ const comenzarJuego = () =>{
   
   totalJugador.innerText = valorJugador
   totalCasa.innerText = valorCasa
+  contadorTitulo.forEach(titulo => {
+    titulo.classList.add('active')
+  })
+
+  
+/*   if(sum <= 20){
+  suma.innerText = sum     
+  }else if(sum === 21){
+    message = 'has ganado!'
+    hasBlackJack = true
+  }else{
+    message = 'has perdido'
+    isAlive = false
+  } */
+
+    /* funcion pedir carta o pasar*/
+  
 }
 
 const barajar = (cartas) =>{
@@ -113,6 +130,7 @@ let valorJugador = 0
 
 const totalCasa = document.querySelector('.total-casa')
 const totalJugador = document.querySelector('.total-jugador')
+const contadorTitulo = document.querySelectorAll('.contador-titulo')
 
 const calculoValor = (mano) => {
   let valor = 0
