@@ -105,8 +105,14 @@ const comenzarJuego = () =>{
   } */
 
     /* funcion pedir carta o pasar*/
+
+    if(valorCasa < 21 && valorJugador < 21){
+      mostrarBotones()
+    }
   
 }
+
+/******* BARAJAR *******/
 
 const barajar = (cartas) =>{
   for (let i = cartas.length - 1; i > 0; i--) {
@@ -114,6 +120,9 @@ const barajar = (cartas) =>{
     [cartas[i], cartas[j]] = [cartas[j], cartas[i]];
   }
 }
+
+
+/***** REPARTIR *******/
 
 const repartir = () => {              
 if(cartas.length === 0){                   //no quedan carta en el mazo   
@@ -124,6 +133,21 @@ const carta = cartas[indice]        //elige una carta y la elimina del mazo
 cartas.splice(indice, 1)
 return carta
 }
+
+/***** MOSTRAR BOTONES  *******/
+
+const mostrarBotones = () =>{
+  const pedirCarta = document.querySelector('.pedir')
+  pedirCarta.classList.add('active')
+  const pasarTurno = document.querySelector('.pasar')
+  pasarTurno.classList.add('active')
+}
+
+const pedirOtraCarta = () => {
+
+}
+
+/****  CALCULAR VALOR *****/ 
 
 let valorCasa = 0
 let valorJugador = 0
@@ -152,7 +176,7 @@ const calculoValor = (mano) => {
 
 
 document.querySelector('.jugar').addEventListener('click',comenzarJuego)
-
+document.query
 
 
 
