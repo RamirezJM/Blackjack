@@ -40,7 +40,18 @@ const suma = document.querySelector('.suma')
     isAlive = false
   } */
 
+    const espacioJugador = document.querySelector('.jugador')
 
+
+    const pedirOtraCarta = () => {
+      const nuevaCartaJugador = repartir()
+      const imagen1Jugador = document.createElement('img')
+      imagen1Jugador.src = nuevaCartaJugador.imagen
+      imagen1Jugador.alt = nuevaCartaJugador.nombre
+      espacioJugador.appendChild(imagen1Jugador)
+      return nuevaCartaJugador
+    
+    }
     
 
 const comenzarJuego = () =>{
@@ -53,7 +64,7 @@ const comenzarJuego = () =>{
 
   /* jugador */
 
-  const espacioJugador = document.querySelector('.jugador')
+ 
   espacioJugador.innerHTML = ''   //se limpia el espacio
 
   const imagen1Jugador = document.createElement('img')
@@ -91,6 +102,8 @@ const comenzarJuego = () =>{
   totalCasa.innerText = valorCasa
   contadorTitulo.forEach(titulo => {
     titulo.classList.add('active')
+
+    
   })
 
   
@@ -109,6 +122,13 @@ const comenzarJuego = () =>{
     if(valorCasa < 21 && valorJugador < 21){
       mostrarBotones()
     }
+    else if(valorCasa === 21){
+      /*mensaje, 'la casa gana, has perdido' */
+    }
+    else if(valorJugador === 21){
+      /*mensaje 'has ganado!' */
+    }
+
   
 }
 
@@ -143,7 +163,9 @@ const mostrarBotones = () =>{
   pasarTurno.classList.add('active')
 }
 
-const pedirOtraCarta = () => {
+
+
+const pasarTurno = () => {
 
 }
 
@@ -176,7 +198,8 @@ const calculoValor = (mano) => {
 
 
 document.querySelector('.jugar').addEventListener('click',comenzarJuego)
-document.query
+document.querySelector('.pedir').addEventListener('click', pedirOtraCarta)
+document.querySelector('.pasar').addEventListener('click', pasarTurno)
 
 
 
